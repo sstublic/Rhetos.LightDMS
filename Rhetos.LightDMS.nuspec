@@ -14,10 +14,10 @@
     <dependencies>
       <group targetFramework="net8.0">
         <dependency id="Azure.Storage.Blobs" version="12.25.0" />
+        <dependency id="Microsoft.Data.SqlClient" version="6.1.1" />
         <dependency id="Rhetos.AfterDeploy" version="6.0.0" />
         <dependency id="Rhetos.CommonConcepts" version="6.0.0" />
         <dependency id="Rhetos.Host.AspNet" version="6.0.0" />
-        <dependency id="Rhetos.MsSqlEf6" version="6.0.0" />
         <dependency id="AWSSDK.S3" version="4.0.6.13" />
       </group>
     </dependencies>

@@ -18,13 +18,13 @@
 */
 
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Rhetos.LightDms.Storage;
 using Rhetos.LightDMS.TestApp;
 using Rhetos.Utilities;
 using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;

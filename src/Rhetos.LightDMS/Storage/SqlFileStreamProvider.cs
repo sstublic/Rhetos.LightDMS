@@ -17,11 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlTypes;
 using Rhetos.Utilities;
 using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.IO;
 
 namespace Rhetos.LightDms.Storage

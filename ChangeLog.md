@@ -1,5 +1,12 @@
 # Rhetos.LightDMS release notes
 
+## 6.1.0 (TO BE RELEASED)
+
+### Breaking changes
+
+* The package no longer references a Rhetos database provider. The application must directly reference Rhetos.MsSqlEf6 (EF6) or Rhetos.MsSql (EF Core).
+* LightDMS now uses Microsoft.Data.SqlClient for its own database connections, instead of System.Data.SqlClient that was previously provided by the EF6 provider. Microsoft.Data.SqlClient enforces encryption by default (Encrypt=true): if the SQL Server does not present a certificate trusted by the application host, add TrustServerCertificate=true (or Encrypt=false) to the connection string. Applications using Rhetos.MsSql already use this driver and are unaffected.
+
 ## 6.0.0 (2025-09-04)
 
 * Update to .NET 8 and Rhetos 6.

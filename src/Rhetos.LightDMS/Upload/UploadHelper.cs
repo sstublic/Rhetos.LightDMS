@@ -18,14 +18,14 @@
 */
 
 using Amazon.S3.Transfer;
+using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlTypes;
 using Rhetos.LightDms.Storage;
 using Rhetos.LightDMS.Storage;
 using Rhetos.Logging;
 using Rhetos.Utilities;
 using System;
 using System.Data;
-using System.Data.SqlClient;
-using System.Data.SqlTypes;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
