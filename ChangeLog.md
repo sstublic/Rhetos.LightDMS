@@ -5,7 +5,9 @@
 ### Breaking changes
 
 * The package no longer references a Rhetos database provider. The application must directly reference Rhetos.MsSqlEf6 (EF6) or Rhetos.MsSql (EF Core).
-* LightDMS now uses Microsoft.Data.SqlClient for its own database connections, instead of System.Data.SqlClient that was previously provided by the EF6 provider. Microsoft.Data.SqlClient enforces encryption by default (Encrypt=true): if the SQL Server does not present a certificate trusted by the application host, add TrustServerCertificate=true (or Encrypt=false) to the connection string. Applications using Rhetos.MsSql already use this driver and are unaffected.
+* New direct dependency: Microsoft.Data.SqlClient 6.1.1. LightDMS now uses it for its own database connections, instead of System.Data.SqlClient that was previously provided by the EF6 provider. This dependency lands in every consumer's graph, on both EF6 and EF Core hosts, with two consequences:
+  * Silent driver switch in other components: libraries that auto-select Microsoft.Data.SqlClient when it is present in the application switch away from System.Data.SqlClient. Known case: Hangfire.SqlServer 1.8 (used by Rhetos.Jobs.Hangfire) moves its storage connection to Microsoft.Data.SqlClient; in a consuming application this made "rhetos dbupdate" fail during recurring-job registration. This affects EF6-flavor hosts too, not only EF Core hosts.
+  * Encryption is on by default (Encrypt=Mandatory; System.Data.SqlClient defaulted to off). Servers with self-signed or untrusted certificates fail login with SqlException "The certificate chain was issued by an authority that is not trusted" (native error -2146893019, SEC_E_UNTRUSTED_ROOT). Remedies: add TrustServerCertificate=True to the connection string (recommended for dev/test), install a certificate trusted by the application host (recommended for production), or set Encrypt=False.
 
 ## 6.0.0 (2025-09-04)
 
