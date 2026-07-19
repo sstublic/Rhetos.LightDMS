@@ -1,9 +1,11 @@
 # Rhetos.LightDMS release notes
 
-## 6.1.0 (TO BE RELEASED)
+## 6.1.1 (TO BE RELEASED)
 
 ### Breaking changes
 
+* Update to .NET 10 (target framework net10.0) and Rhetos 6.1 framework packages.
+* Updated dependency Microsoft.Data.SqlClient 6.1.6.
 * The package no longer references a Rhetos database provider. The application must directly reference Rhetos.MsSqlEf6 (EF6) or Rhetos.MsSql (EF Core).
 * New direct dependency: Microsoft.Data.SqlClient 6.1.1. LightDMS now uses it for its own database connections, instead of System.Data.SqlClient that was previously provided by the EF6 provider. This dependency lands in every consumer's graph, on both EF6 and EF Core hosts, with two consequences:
   * Silent driver switch in other components: libraries that auto-select Microsoft.Data.SqlClient when it is present in the application switch away from System.Data.SqlClient. Known case: Hangfire.SqlServer 1.8 (used by Rhetos.Jobs.Hangfire) moves its storage connection to Microsoft.Data.SqlClient; in a consuming application this made "rhetos dbupdate" fail during recurring-job registration. This affects EF6-flavor hosts too, not only EF Core hosts.

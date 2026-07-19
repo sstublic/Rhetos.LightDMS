@@ -8,7 +8,7 @@ $ErrorActionPreference = 'Stop'
 # Prequisites
 
 # Testing if Build.bat has completed successfully.
-if (-Not (Test-Path 'test\Rhetos.LightDMS.TestApp\bin\Debug\net8.0\Rhetos.LightDMS.TestApp.dll' -PathType Leaf)) {
+if (-Not (Test-Path 'test\Rhetos.LightDMS.TestApp\bin\Debug\net10.0\Rhetos.LightDMS.TestApp.dll' -PathType Leaf)) {
     throw "Please execute Build.bat successfully before running Test.ps1. Build output file 'Rhetos.LightDMS.TestApp.dll' does not exist."
 }
 
@@ -69,7 +69,7 @@ if ([string]::IsNullOrEmpty($r[0])) {
 }
 # END Create FS DB
 
-Push-Location .\test\Rhetos.LightDMS.TestApp\bin\Debug\net8.0\
+Push-Location .\test\Rhetos.LightDMS.TestApp\bin\Debug\net10.0\
 
 Write-Output "Deploying test app to $($varbinDbName)..."
 $appSettingsObj = [pscustomobject]@{
@@ -143,7 +143,7 @@ if ($LastExitCode -ne 0) { throw "dotnet test failed." }
 
 Write-Output 'Test completed, cleaning up test resources ...'
 
-Remove-Item '.\test\Rhetos.LightDMS.TestApp\bin\Debug\net8.0\rhetos-app.local.settings.json'
+Remove-Item '.\test\Rhetos.LightDMS.TestApp\bin\Debug\net10.0\rhetos-app.local.settings.json'
 Invoke-Docker stop lightdms_s3ninja lightdms_azurite
 
 Write-Output 'Done!'
